@@ -1,7 +1,7 @@
 # 1. Generar una estructura todas las estadísticas asociadas a cada jugador o jugadora.
 def generarEstructura(names, goals, goals_avoided, assists):
     """
-    Genera un diccionario con las estadísticas asociadas a cada jugador o jugadora.
+    Genera un diccionario con las estadísticas asociadas a cada jugador o jugadora utilizando la función zip.
     
     Argumentos:
     - names: Cadena de texto con los nombres de los jugadores separados por coma y espacio.
@@ -10,15 +10,10 @@ def generarEstructura(names, goals, goals_avoided, assists):
     - assists: Lista con la cantidad de asistencias de cada jugador.
     
     Retorna:
-    - estadisticas_jugadores: Diccionario donde las claves son los nombres de los jugadores y los valores son diccionarios con las estadísticas asociadas a cada jugador.
+    - Diccionario donde las claves son los nombres de los jugadores y los valores son diccionarios con las estadísticas asociadas a cada jugador.
     """
     estadisticas_jugadores = {}
-    nombres = names.split(", ")
-    for i in range(len(nombres)):
-        nombre = nombres[i]
-        goles = goals[i]
-        goles_evitados = goals_avoided[i]
-        asistencias = assists[i]
+    for nombre, goles, goles_evitados, asistencias in zip(names.split(", "), goals, goals_avoided, assists):
         estadisticas_jugadores[nombre] = {'Goles': goles, 'Goles Evitados': goles_evitados, 'Asistencias': asistencias}
     return estadisticas_jugadores
 
