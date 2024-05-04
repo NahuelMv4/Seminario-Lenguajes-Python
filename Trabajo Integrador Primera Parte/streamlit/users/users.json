@@ -1,0 +1,16 @@
+[
+    {
+        "username": "frncramirez",
+        "name": "Franco Dario Ramirez",
+        "mail": "ramirezfrancd@gmail.com",
+        "date": "2004-06-24",
+        "gen": "Masculino"
+    },
+    {
+        "username": "pruebaUsuario1",
+        "name": "Usuario De Prueba",
+        "mail": "prueba@yahoo.com",
+        "date": "2002-02-02",
+        "gen": "Otro"
+    }
+]
