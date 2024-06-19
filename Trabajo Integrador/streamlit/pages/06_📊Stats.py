@@ -221,27 +221,13 @@ def ordenar_datasets_por_errores(partidas):
         except ValueError as e:
             st.warning(f"Error al convertir 'cant correctas' a entero en la fila {index}: {e}")
 
-    # Ordenar las claves de cant_errores de forma decreciente según la cantidad de errores
-    sorted_temas = sorted(cant_errores, key=lambda x: cant_errores[x], reverse=True)
-
-    # Recorrer las claves ordenadas y mostrar los datos correspondientes usando Streamlit
-    for tema in sorted_temas:
-        if tema == "Lagos":
-            st.subheader('Datos de los Lagos')
-            df_lagos = pd.read_csv(rutas_archivos[tema])
-            st.dataframe(df_lagos)
-        elif tema == "Aeropuertos":
-            st.subheader('Datos de los Aeropuertos')
-            df_aeropuertos = pd.read_csv(rutas_archivos[tema])
-            st.dataframe(df_aeropuertos)
-        elif tema == "Censo 2022":
-            st.subheader('Datos del Censo 2022')
-            df_censo = pd.read_csv(rutas_archivos[tema])
-            st.dataframe(df_censo)
-        elif tema == "Conectividad":
-            st.subheader('Datos de Conectividad')
-            df_conectividad = pd.read_csv(rutas_archivos[tema])
-            st.dataframe(df_conectividad)
+    # Crear un DataFrame a partir de cant_errores para mostrar los resultados
+    df_errores = pd.DataFrame(list(cant_errores.items()), columns=['Tematica', 'Cantidad de Errores'])
+    
+    # Ordenar el DataFrame por la cantidad de errores de forma descendente
+    df_errores = df_errores.sort_values(by='Cantidad de Errores', ascending=False)
+    
+    return df_errores
 
 # Inciso 7
 def grafico_evolucion_puntaje(df, usuario1, usuario2):
