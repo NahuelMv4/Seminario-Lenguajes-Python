@@ -1,0 +1,38 @@
+[
+    {
+        "user": "TestDos",
+        "mail": "test2@gmail.com",
+        "hora": "2024-06-19 15:59:31",
+        "dificultad": "Media",
+        "tematica": "Lagos",
+        "cant correctas": 3,
+        "puntaje": 9
+    },
+    {
+        "user": "TestUno",
+        "mail": "test1@gmail.com",
+        "hora": "2024-06-19 15:57:02",
+        "dificultad": "Fácil",
+        "tematica": "Aeropuertos",
+        "cant correctas": 3,
+        "puntaje": 3
+    },
+    {
+        "user": "TestUno",
+        "mail": "test1@gmail.com",
+        "hora": "2024-06-19 16:01:23",
+        "dificultad": "Fácil",
+        "tematica": "Censo 2022",
+        "cant correctas": 1,
+        "puntaje": 1
+    },
+    {
+        "user": "TestTres",
+        "mail": "test3@gmail.com",
+        "hora": "2024-06-19 16:00:52",
+        "dificultad": "Difícil",
+        "tematica": "Conectividad",
+        "cant correctas": 0,
+        "puntaje": 0
+    }
+]

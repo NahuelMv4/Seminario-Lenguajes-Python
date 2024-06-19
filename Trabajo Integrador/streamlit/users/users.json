@@ -1,0 +1,23 @@
+[
+    {
+        "username": "TestUno",
+        "name": "Test Uno",
+        "mail": "test1@gmail.com",
+        "date": "2000-01-01",
+        "gen": "Masculino"
+    },
+    {
+        "username": "TestDos",
+        "name": "Test Dos",
+        "mail": "test2@gmail.com",
+        "date": "2000-01-01",
+        "gen": "Femenino"
+    },
+    {
+        "username": "TestTres",
+        "name": "Test Tres",
+        "mail": "test3@gmail.com",
+        "date": "2000-01-01",
+        "gen": "Otro"
+    }
+]
