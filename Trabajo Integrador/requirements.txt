@@ -1,0 +1,8 @@
+jupyter==1.0.0
+streamlit==1.33.0
+matplotlib==3.9.0
+pandas==2.2.2
+geopandas==0.14.4
+folium==0.16.0
+plotly==5.22.0
+shapely==2.0.4
