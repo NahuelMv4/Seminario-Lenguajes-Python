@@ -1,14 +1,14 @@
 
-# Trabajo Practico Integrador 1ra Parte
+# Trabajo Práctico Integrador 1ra Parte
 -------------------------------------------
 **Grupo 17**
 
 Integrantes:
 
-    Franco Dario Ramirez
+    Franco Darío Ramirez
     22063/9
 
-    Felipe Di Placido
+    Felipe Di Plácido
     21256/2
 
     Nahuel Saroglia Gambino
@@ -16,23 +16,33 @@ Integrantes:
 -------------------------------------------
 **¿Que hace este proyecto?**
 
-Este proyecto por una parte se encargara de manejar los distintos datasets que nos han dado,
-con manejar nos referimos a leer, editarlos y guardar cada uno de ellos con las modificaciones 
-pedidas por el trabajo practica. Por otro lado encontraras un streamlit con la informacion
-de los 3 integrantes que participaron en la creacion de este proyecto junto con un apartado 
-para poder realizar un registro que en la segunda parte del trabajo integrador sera utilizado,
-este registro puede guardar tus datos en un archivos JSON para que no se pierdan.
+Este proyecto por una parte se encarga de manejar los distintos datasets que nos han proporcionado,
+con manejar nos referimos a leer, editar y guardar cada uno de ellos con las modificaciones 
+pedidas por el trabajo práctico. Por otro lado se encontrará con una página de streamlit donde podrá
+participar de PyTrivia, un juego de preguntas y respuestas donde podrás poner a prueba tus conocimientos 
+en diferentes áreas.
 
 -------------------------------------------
-**Instalacion en modo desarrollo**
+**Instalación en modo desarrollo**
 
-Para ejecutar el proyecto se debe utilizar python 3.11 o versiones superiores.
+Para ejecutar el proyecto se debe utilizar **Python 3.11** o versiones superiores.
+
+**Linux**
 
 Para instalar este proyecto usted debe realizar los siguientes comandos en su consola:
 ```
-    phyton3.11 -m venv venv
+    python3.11 -m venv venv
     source venv/bin/activate
-    pip install -r requirementes.txt
+    pip install -r requirements.txt
+```
+
+**Windows**
+
+Para instalar este proyecto usted debe realizar los siguientes comandos en su consola:
+```
+    python3 -m venv venv
+    source ./venv/Scripts/activate
+    pip install -r requirements.txt
 ```
 -------------------------------------------
 **Uso**
@@ -44,7 +54,7 @@ Para correr los proyectos de datasets:
     jupyter notebook
 ```
 
-Le abrira una pagina local host en su navegador y podra ver y ejecutar cualquiera de los 4 procesamientos realizados
+Le abrirá una página local host en su navegador y podrá ver y ejecutar cualquiera de los 4 procesamientos realizados
 por los integrantes del grupo.
 
 Para correr el streamlit:
@@ -54,8 +64,8 @@ Para correr el streamlit:
     streamlit run 01_🏠Home.py
 ```
 
-Le abrira una pagina local host en su navegador con la interfaz de streamlit realizada por los integrantes del
+Le abrirá una página local host en su navegador con la interfaz de streamlit realizada por los integrantes del
 grupo.
 
-Si quiere cerrar cualquiera de las 2 paginas, debera ir a la terminal en la que las ejecuto y presionar
+Si quiere cerrar cualquiera de las 2 paginas, deberá ir a la terminal en la que las ejecuto y presionar
 las teclas Ctrl + C. Eso cerrara la pagina que haya abierto.
