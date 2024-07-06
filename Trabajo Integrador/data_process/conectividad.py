@@ -2,7 +2,7 @@ def reemplazar_valores(fila):
     """
     Reemplaza los valores '--' por 'NO' en una fila del dataset.
 
-    Argsumentos:
+    Args:
         fila: Lista que representa una fila del dataset.
 
     Retorna:
