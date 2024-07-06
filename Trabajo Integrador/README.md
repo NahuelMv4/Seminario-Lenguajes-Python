@@ -5,11 +5,11 @@
 
 Integrantes:
 
-    Franco Darío Ramirez
-    22063/9
+    Integrante 1
+    XXXXX/X
 
-    Felipe Di Plácido
-    21256/2
+    Integrante 2
+    XXXXX/X
 
     Nahuel Saroglia Gambino
     25447/6
