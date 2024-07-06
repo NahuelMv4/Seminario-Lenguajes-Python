@@ -7,8 +7,8 @@ import folium
 from streamlit_folium import st_folium
 from pathlib import Path
 
-path_lagos = Path('../customdata/lagos_arg.csv')
-path_aeropuertos = Path('../customdata/ar-airports-custom.csv')
+path_lagos = Path('../custom_data/lagos_arg.csv')
+path_aeropuertos = Path('../custom_data/ar-airports-custom.csv')
 
 # Leer el archivo CSV de los lagos
 try:
@@ -128,6 +128,9 @@ colores_elevation = {
 }
 
 st.subheader('Mapa de Aeropuertos')
+st.write("Elevacion Baja: Verde")
+st.write("Elevacion Media: Azul")
+st.write("Elevacion Alta: Rojo")
 try:
     # Creo un mapa centrado en Argentina
     mapa_aeropuertos = generate_map()

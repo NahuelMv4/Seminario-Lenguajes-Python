@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import sys
 from pathlib import Path
-import json
 
 sys.path.append(str(Path('..').resolve()))
 from funciones import guardar_partida
@@ -47,4 +46,3 @@ with st.container():
 
     # Muestro solo top 15, y columnas user, puntaje y mail.
     st.write(df_reducido.head(15))
-

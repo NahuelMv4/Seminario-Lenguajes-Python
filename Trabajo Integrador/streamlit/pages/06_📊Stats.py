@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import json
 from pathlib import Path
 import plotly.express as px
 import matplotlib.pyplot as plt
@@ -154,10 +153,10 @@ def top10_rango_fechas(df_partidas):
 # Inciso 6 
 def ordenar_datasets_por_errores(partidas):
     # Definir las rutas de los archivos CSV
-    ruta_lagos = Path('../customdata/lagos_arg.csv')
-    ruta_aeropuertos = Path('../customdata/ar-airports-custom.csv')
-    ruta_censo = Path('../customdata/c2022_tp_c_resumen_adaptado_custom.csv')
-    ruta_conectividad = Path('../customdata/Conectividad_internet_modificado.csv')
+    ruta_lagos = Path('../custom_data/lagos_arg.csv')
+    ruta_aeropuertos = Path('../custom_data/ar-airports-custom.csv')
+    ruta_censo = Path('../custom_data/c2022_tp_c_resumen_adaptado_custom.csv')
+    ruta_conectividad = Path('../custom_data/Conectividad_internet_modificado.csv')
 
     # Crear un diccionario para almacenar las rutas de los archivos
     rutas_archivos = {
