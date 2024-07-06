@@ -7,8 +7,8 @@ import folium
 from streamlit_folium import st_folium
 from pathlib import Path
 
-path_lagos = Path('../custom_data/lagos_arg.csv')
-path_aeropuertos = Path('../custom_data/ar-airports-custom.csv')
+path_lagos = Path('../customdata/lagos_arg.csv')
+path_aeropuertos = Path('../customdata/ar-airports-custom.csv')
 
 # Leer el archivo CSV de los lagos
 try:
@@ -30,17 +30,31 @@ st.title('Análisis de Lagos y Aeropuertos')
 st.header('Lagos')
 
 st.subheader('Mapa de Lagos')
+st.write('Violeta: Superficie Grande')
+st.write('Azul: Superficie Media')
+st.write('Turquesa: Superficie Chica')
 try:
-    # Creo un GeoDataFrame desde el DataFrame de lagos
-    gdf_lagos = gpd.GeoDataFrame(
-        df_lagos, geometry=gpd.points_from_xy(df_lagos['Longitud (GD)'], df_lagos['Latitud (GD)']))
-
-    # Creo un mapa centrado en Argentina
+    # Crear un mapa centrado en Argentina
     mapa_lagos = folium.Map(location=[-38.4161, -63.6167], zoom_start=4)
 
-    # Agrego marcadores de los lagos al mapa
-    for idx, row in gdf_lagos.iterrows():
-        folium.Marker([row.geometry.y, row.geometry.x], popup=row['Nombre']).add_to(mapa_lagos)
+    # Definir colores para cada categoría de Sup Tamaño
+    colores = {
+        "grande": "purple",
+        "medio": "blue",
+        "chico": "turquoise"
+    }
+
+    # Añadir puntos al mapa
+    for _, row in df_lagos.iterrows():
+        folium.CircleMarker(
+            location=[row["Latitud (GD)"], row["Longitud (GD)"]],
+            radius=5,
+            color=colores[row["Sup Tamaño"]],
+            fill=True,
+            fill_color=colores[row["Sup Tamaño"]],
+            fill_opacity=0.6,
+            popup=row["Nombre"]
+        ).add_to(mapa_lagos)
 
     # Mostrar el mapa en Streamlit
     st_folium(mapa_lagos, width=700, height=500)
@@ -53,12 +67,17 @@ st.dataframe(df_lagos)
 
 # Superficie de los Lagos
 st.subheader('Superficie de los Lagos')
+max_barras = st.slider('Seleccione cuántos lagos mostrar:', 1, min(30, len(df_lagos)), 10)
+
 try:
+    # Ordenar lagos por superficie y seleccionar los primeros según la elección del usuario
+    df_lagos_sorted = df_lagos.sort_values(by='Superficie (km2)', ascending=False).head(max_barras)
+
     fig, ax = plt.subplots(figsize=(12, 6))
-    ax.bar(df_lagos['Nombre'], df_lagos['Superficie (km2)'], color='skyblue')
+    ax.bar(df_lagos_sorted['Nombre'], df_lagos_sorted['Superficie (km2)'], color='skyblue')
     ax.set_xlabel('Nombre del Lago')
     ax.set_ylabel('Superficie (km²)')
-    ax.set_title('Superficie de los Lagos')
+    ax.set_title(f'Superficie de los {max_barras} Lagos más Grandes')
     plt.xticks(rotation=45)
     st.pyplot(fig)
 except KeyError as e:
@@ -85,16 +104,40 @@ except KeyError as e:
 st.header('Aeropuertos')
 
 # Mapa de Aeropuertos
+def generate_map():
+    attr = (
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
+    'contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>'
+    )
+    
+    tiles = 'https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png'
+    m = folium.Map(
+        location=(-33.457606, -65.346857),
+        control_scale=True,
+        zoom_start=5,
+        name='es',
+        tiles=tiles,
+        attr=attr
+    )
+    return m
+
+colores_elevation = {
+    'bajo': 'green',
+    'medio': 'blue',
+    'alto': 'red'
+}
+
 st.subheader('Mapa de Aeropuertos')
 try:
     # Creo un mapa centrado en Argentina
-    mapa_aeropuertos = folium.Map(location=[-38.4161, -63.6167], zoom_start=4)
+    mapa_aeropuertos = generate_map()
 
     # Agrego aeropuertos al mapa
     for idx, row in df_aeropuertos.iterrows():
+        color_point = colores_elevation.get(row['elevation_name'], 'gray')
         folium.Marker(location=[row['latitude_deg'], row['longitude_deg']],
                       popup=row['name'],
-                      icon=folium.Icon(color='red')).add_to(mapa_aeropuertos)
+                      icon=folium.Icon(color=color_point)).add_to(mapa_aeropuertos)
 
     # Mostrar el mapa en Streamlit
     st_folium(mapa_aeropuertos, width=700, height=500)

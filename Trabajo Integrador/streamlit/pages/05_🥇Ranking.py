@@ -22,7 +22,7 @@ if "ranking_state" in st.session_state:
                 st.write(f":gray[{clave}: {atributo}]")
             st.markdown(f'La pregunta es sobre: {st.session_state.ranking_state["list_quest"][i]["pregunta"]}')
             st.markdown(f':green[Respuesta Correcta:] {st.session_state.ranking_state["list_quest"][i]["r_correcta"]}')
-            if st.session_state.ranking_state["list_quest"][i]["r_correcta"] == st.session_state.ranking_state["list_quest"][i]["r"]:
+            if str(st.session_state.ranking_state["list_quest"][i]["r_correcta"]).lower() == str(st.session_state.ranking_state["list_quest"][i]["r"]).lower():
                 st.markdown(f':green[Respuesta del usuario:] {st.session_state.ranking_state["list_quest"][i]["r"]}')
             else:
                 st.markdown(f':red[Respuesta del usuario:] {st.session_state.ranking_state["list_quest"][i]["r"]}')

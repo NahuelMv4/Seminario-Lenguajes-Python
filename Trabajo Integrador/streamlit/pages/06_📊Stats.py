@@ -7,14 +7,7 @@ import matplotlib.pyplot as plt
 from funciones.cargar_partidas import cargar_partidas
 
 # Funciones de los incisos proporcionados
-def inciso1():
-    path_users = Path('./users/users.json')
-    path_partidas = Path('./users/partidas.json')
-
-    # Se leen los archivos JSON con pandas
-    df_users = pd.read_json(path_users)
-    df_partidas = pd.read_json(path_partidas)
-
+def jugadores_por_genero(df_users, df_partidas):
     # Se filtran los usuarios que han jugado al menos una vez
     usuarios_que_jugaron = df_partidas['mail'].unique()
     df_usuarios_jugadores = df_users[df_users['mail'].isin(usuarios_que_jugaron)]
@@ -29,12 +22,7 @@ def inciso1():
 
     st.write('---')
 
-def inciso2():
-    path_partidas = Path('./users/partidas.json')
-
-    # Se lee el archivo JSON con pandas
-    df_partidas = pd.read_json(path_partidas)
-
+def partidas_superior_media(df_partidas):
     # Se calcula la media de puntos
     puntuacion_media = df_partidas['puntaje'].mean()
 
@@ -53,12 +41,7 @@ def inciso2():
 
     st.write('---')
 
-def inciso3():
-    path_partidas = Path('./users/partidas.json')
-
-    # Se lee el archivos JSON con pandas
-    df_partidas = pd.read_json(path_partidas)
-
+def partidas_por_dia_de_semana(df_partidas):
     # Se convierte la columna 'hora'(str) a datetime
     df_partidas['hora'] = pd.to_datetime(df_partidas['hora'])
 
@@ -78,13 +61,8 @@ def inciso3():
 
     st.write('---')
 
-def inciso4():
+def promedios_aciertos_mensuales(df_partidas):
     st.subheader("Promedio de preguntas acertadas mensualmente")
-
-    path_partidas = Path('./users/partidas.json')
-    
-    # Se lee el archivo JSON con Pandas
-    df_partidas = pd.read_json(path_partidas)
 
     # Se fija una fecha de incio default
     fecha_inicio_default = pd.Timestamp('2024-01-01')
@@ -98,12 +76,12 @@ def inciso4():
 
         # Se convierten las fechas en objetos Timestamp para luego poder comparar
         fecha_inicio = pd.Timestamp(fecha_inicio)
-        fecha_fin = pd.Timestamp(fecha_fin)
+        fecha_fin = pd.Timestamp(fecha_fin) + pd.Timedelta(days=1)
         
         # Se filtran las partidas dentro del rango de fechas seleccionado
         df_partidas_filtradas = df_partidas[
             (pd.to_datetime(df_partidas['hora']) >= fecha_inicio) & 
-            (pd.to_datetime(df_partidas['hora']) <= fecha_fin)
+            (pd.to_datetime(df_partidas['hora']) < fecha_fin)
         ] 
 
         # Se verifica si hay partidas en el rango de fechas seleccionado
@@ -113,12 +91,15 @@ def inciso4():
             df_partidas_filtradas['fecha'] = pd.to_datetime(df_partidas_filtradas['hora'])
             df_partidas_filtradas.set_index('fecha', inplace=True)
             
-            # Calcular el promedio mensual de preguntas acertadas
+            # Se calcula el promedio mensual de preguntas acertadas
             # Resample('M'): agrupa de manera mensual
             promedio_mensual = df_partidas_filtradas['cant correctas'].resample('M').mean()
 
+            # Se formatea la fecha para que solo se muestre el mes y año
+            promedio_mensual.index = promedio_mensual.index.strftime('%Y-%m')
+
             # Se genera el gráfico de líneas del promedio mensual
-            st.scatter_chart(promedio_mensual, use_container_width=True,)
+            st.table(promedio_mensual)
 
         else:
             st.write("No hay partidas en el rango de fechas seleccionado.")
@@ -127,13 +108,8 @@ def inciso4():
 
     st.write('---')
 
-def inciso5():
+def top10_rango_fechas(df_partidas):
     st.subheader('Top 10 acumulado')
-
-    path_partidas = Path('./users/partidas.json')
-
-    # Se lee el archivo JSON con Pandas
-    df_partidas = pd.read_json(path_partidas)
 
     # Se establecen fechas por defecto
     fecha_inicio_default = pd.to_datetime('2024-01-02')
@@ -148,12 +124,12 @@ def inciso5():
     
         # Se convierten las fechas en objetos Timestamp
         fecha_inicio = pd.Timestamp(fecha_inicio)
-        fecha_fin = pd.Timestamp(fecha_fin)
+        fecha_fin = pd.Timestamp(fecha_fin) + pd.Timedelta(days=1)
         
         # Se filtran las partidas dentro del rango de fechas seleccionado
         df_partidas_filtradas = df_partidas[
             (pd.to_datetime(df_partidas['hora']) >= fecha_inicio) & 
-            (pd.to_datetime(df_partidas['hora']) <= fecha_fin)
+            (pd.to_datetime(df_partidas['hora']) < fecha_fin)
         ]
 
     # Se asegura de que hay datos para calcular el top 10
@@ -178,10 +154,10 @@ def inciso5():
 # Inciso 6 
 def ordenar_datasets_por_errores(partidas):
     # Definir las rutas de los archivos CSV
-    ruta_lagos = Path('../custom_data/lagos_arg.csv')
-    ruta_aeropuertos = Path('../custom_data/ar-airports-custom.csv')
-    ruta_censo = Path('../custom_data/c2022_tp_c_resumen_adaptado_custom.csv')
-    ruta_conectividad = Path('../custom_data/Conectividad_internet_modificado.csv')
+    ruta_lagos = Path('../customdata/lagos_arg.csv')
+    ruta_aeropuertos = Path('../customdata/ar-airports-custom.csv')
+    ruta_censo = Path('../customdata/c2022_tp_c_resumen_adaptado_custom.csv')
+    ruta_conectividad = Path('../customdata/Conectividad_internet_modificado.csv')
 
     # Crear un diccionario para almacenar las rutas de los archivos
     rutas_archivos = {
@@ -265,22 +241,46 @@ def listar_puntaje_promedio_por_dificultad(df):
 def listar_usuarios_en_racha(df):
     df['hora'] = pd.to_datetime(df['hora'])
     ultima_semana = df[df['hora'] >= (pd.Timestamp.now() - pd.Timedelta(days=7))]
+    # Se filtra por los usuarios que tienen en la última semana todas sus partidas con puntaje mayor a 0
     racha_usuarios = ultima_semana.groupby('user').filter(lambda x: (x['puntaje'] > 0).all())
-    return racha_usuarios['user'].unique()
+
+    # Se filtra por los usuarios que jugaron los últimos 7 dias 
+    usuarios_en_racha = racha_usuarios.groupby('user').filter(lambda x: x['hora'].dt.date.nunique() == 7)
+    return usuarios_en_racha['user'].unique()
 
 # Cargar datos
-partidas = cargar_partidas()
+try:
+    partidas = cargar_partidas()
+    df_partidas = pd.DataFrame(partidas)
+except FileNotFoundError as e:
+    st.error(f"Error: {e}") 
+except ValueError as e:
+    st.error(f"Error: {e}")
+
+# Se obtienen los usuarios con manejador de excepciones
 path_users = Path('./users/users.json')
-df_users = pd.read_json(path_users)
-df_partidas = pd.DataFrame(partidas)
+try:
+    df_users = pd.read_json(path_users)
+except FileNotFoundError:
+    st.error(f"El archivo {path_users} no existe.")
+except ValueError as e:
+    st.error(f"Error al leer el archivo JSON: {e}")
+
 
 st.title("📊 Estadísticas del Juego")
+# Inciso 1
+jugadores_por_genero(df_users, df_partidas)
+# Inciso 2
+partidas_superior_media(df_partidas)
 
-inciso1()
-inciso2()
-inciso3()
-inciso4()
-inciso5()
+# Inciso 3
+partidas_por_dia_de_semana(df_partidas)
+
+# Inciso 4
+promedios_aciertos_mensuales(df_partidas)
+
+# Inciso 5
+top10_rango_fechas(df_partidas)
 
 # Inciso 6
 st.subheader("Datasets ordenados por número de errores")

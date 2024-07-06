@@ -34,7 +34,9 @@ if ("game_state" not in st.session_state):
         "cantidad_preguntas": 0,
         "cant_correctas": 0,
         "preguntas": []
-    }    
+    }
+    
+    
 
 if st.session_state.game_state["state"] == "NO_CREADO":
 
@@ -114,25 +116,25 @@ elif st.session_state.game_state["state"] == "NUEVO":
         st.title(f"Pregunta :blue[{num_pregunta}] de :blue[5]")
         for clave, atributo in atributos:
             st.write(f":gray[{clave}: {atributo}]")
-
+        st.write(f"{pregunta}:")
         # Segun la dificultad elegida se mostraran las ayudas.
         match st.session_state.game_state["dificultad"]:
             case "Fácil":
 
                 # Muestro las opciones para la opcion facil.
                 st.markdown(f":green[Ayuda Fácil activada]")
-                respuesta = st.selectbox(f"El {pregunta} es: ", st.session_state.game_state["ultimas_ayudas"],placeholder="Elija su respuesta" ,index= None)
+                respuesta = st.selectbox(f"{pregunta}", st.session_state.game_state["ultimas_ayudas"],placeholder="Elija su respuesta" ,index= None)
             case "Media":
 
                 # Asigno de ayuda la cantidad de letras que tiene la respuesta.
                 ayuda = len(st.session_state.game_state["ultimas_ayudas"])
                 st.markdown(f":orange[Ayuda Media activada]")
                 st.markdown(f"La palabra tiene  :orange[{ayuda}]  letras")
-                respuesta = st.text_input(f"El {pregunta} es:", placeholder="Ingrese su respuesta", value="")
+                respuesta = st.text_input(f"{pregunta}", placeholder="Ingrese su respuesta", value="")
             case "Difícil":
 
                 # No hay ayuda.
-                respuesta = st.text_input(f"El {pregunta} es:", placeholder= "Ingrese su respuesta", value= '')
+                respuesta = st.text_input(f"{pregunta}", placeholder= "Ingrese su respuesta", value= '')
         responder = st.form_submit_button("Enviar")
     if responder:
 
@@ -151,15 +153,15 @@ elif st.session_state.game_state["state"] == "NUEVO":
             st.session_state.game_state["state"] = "GENERAR_PREGUNTA"
 
             # SUMAR SEGUN DIFICULTAD
-            if st.session_state.game_state["ultima_respuesta"] == st.session_state.game_state["respuesta_correcta"]:
+            if str(st.session_state.game_state["ultima_respuesta"]).lower() == str(st.session_state.game_state["respuesta_correcta"]).lower():
                 st.session_state.game_state["cant_correctas"] += 1 
                 match st.session_state.game_state["dificultad"]:
                     case "Fácil":
                         st.session_state.game_state["score"] += 1
                     case "Media":
-                        st.session_state.game_state["score"] += 3
+                        st.session_state.game_state["score"] += 1.5
                     case "Difícil":
-                        st.session_state.game_state["score"] += 5
+                        st.session_state.game_state["score"] += 2
             st.rerun()
         else:
             st.error('Elija una respuesta')
