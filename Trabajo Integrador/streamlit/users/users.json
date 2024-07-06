@@ -1,30 +1,23 @@
 [
     {
-        "username": "frncramirez",
-        "name": "Franco Dario Ramirez",
-        "mail": "ramirezfrancd@gmail.com",
-        "date": "2004-06-24",
+        "username": "TestUno",
+        "name": "Test Uno",
+        "mail": "test1@gmail.com",
+        "date": "2000-01-01",
         "gen": "Masculino"
     },
     {
-        "username": "pruebaUsuario1",
-        "name": "Usuario De Prueba",
-        "mail": "prueba@yahoo.com",
-        "date": "2002-02-02",
-        "gen": "Otro"
-    },
-    {
-        "username": "felipediplacido",
-        "name": "felipe di placido",
-        "mail": "felidipla@hotmail.com",
-        "date": "2001-09-21",
-        "gen": "Masculino"
-    },
-    {
-        "username": "nuevaPrueba",
-        "name": "Franco 2",
-        "mail": "ramirex@gmail.com",
-        "date": "2004-06-24",
+        "username": "TestDos",
+        "name": "Test Dos",
+        "mail": "test2@gmail.com",
+        "date": "2000-01-01",
         "gen": "Femenino"
+    },
+    {
+        "username": "TestTres",
+        "name": "Test Tres",
+        "mail": "test3@gmail.com",
+        "date": "2000-01-01",
+        "gen": "Otro"
     }
 ]

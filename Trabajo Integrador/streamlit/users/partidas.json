@@ -1,100 +1,37 @@
 [
     {
-        "user": "pruebaUsuario1",
-        "mail": "prueba@yahoo.com",
-        "hora": "2024-06-19 02:13:23",
+        "user": "TestDos",
+        "mail": "test2@gmail.com",
+        "hora": "2024-06-19 15:59:31",
+        "dificultad": "Media",
+        "tematica": "Lagos",
+        "cant correctas": 3,
+        "puntaje": 9
+    },
+    {
+        "user": "TestUno",
+        "mail": "test1@gmail.com",
+        "hora": "2024-06-19 15:57:02",
         "dificultad": "Fácil",
         "tematica": "Aeropuertos",
         "cant correctas": 3,
         "puntaje": 3
     },
     {
-        "user": "frncramirez",
-        "mail": "ramirezfrancd@gmail.com",
-        "hora": "2024-06-19 02:12:54",
+        "user": "TestUno",
+        "mail": "test1@gmail.com",
+        "hora": "2024-06-19 16:01:23",
         "dificultad": "Fácil",
-        "tematica": "Aeropuertos",
-        "cant correctas": 2,
-        "puntaje": 2
-    },
-    {
-        "user": "pruebaUsuario1",
-        "mail": "prueba@yahoo.com",
-        "hora": "2024-06-19 02:26:23",
-        "dificultad": "Fácil",
-        "tematica": "Aeropuertos",
-        "cant correctas": 2,
-        "puntaje": 2
-    },
-    {
-        "user": "felipediplacido",
-        "mail": "felidipla@hotmail.com",
-        "hora": "2024-06-19 02:47:46",
-        "dificultad": "Fácil",
-        "tematica": "Aeropuertos",
-        "cant correctas": 2,
-        "puntaje": 2
-    },
-    {
-        "user": "felipediplacido",
-        "mail": "felidipla@hotmail.com",
-        "hora": "2024-06-19 02:32:59",
-        "dificultad": "Fácil",
-        "tematica": "Lagos",
+        "tematica": "Censo 2022",
         "cant correctas": 1,
         "puntaje": 1
     },
     {
-        "user": "pruebaUsuario1",
-        "mail": "prueba@yahoo.com",
-        "hora": "2024-06-19 02:38:47",
-        "dificultad": "Fácil",
-        "tematica": "Aeropuertos",
-        "cant correctas": 1,
-        "puntaje": 1
-    },
-    {
-        "user": "pruebaUsuario1",
-        "mail": "prueba@yahoo.com",
-        "hora": "2024-06-19 02:45:18",
-        "dificultad": "Fácil",
-        "tematica": "Aeropuertos",
-        "cant correctas": 1,
-        "puntaje": 1
-    },
-    {
-        "user": "nuevaPrueba",
-        "mail": "ramirex@gmail.com",
-        "hora": "2024-06-19 02:47:14",
-        "dificultad": "Fácil",
-        "tematica": "Aeropuertos",
-        "cant correctas": 1,
-        "puntaje": 1
-    },
-    {
-        "user": "nuevaPrueba",
-        "mail": "ramirex@gmail.com",
-        "hora": "2024-06-19 02:15:26",
-        "dificultad": "Media",
-        "tematica": "Aeropuertos",
-        "cant correctas": 0,
-        "puntaje": 0
-    },
-    {
-        "user": "pruebaUsuario1",
-        "mail": "prueba@yahoo.com",
-        "hora": "2024-06-19 02:25:08",
-        "dificultad": "Fácil",
-        "tematica": "Aeropuertos",
-        "cant correctas": 0,
-        "puntaje": 0
-    },
-    {
-        "user": "pruebaUsuario1",
-        "mail": "prueba@yahoo.com",
-        "hora": "2024-06-19 02:31:37",
-        "dificultad": "Media",
-        "tematica": "Lagos",
+        "user": "TestTres",
+        "mail": "test3@gmail.com",
+        "hora": "2024-06-19 16:00:52",
+        "dificultad": "Difícil",
+        "tematica": "Conectividad",
         "cant correctas": 0,
         "puntaje": 0
     }
