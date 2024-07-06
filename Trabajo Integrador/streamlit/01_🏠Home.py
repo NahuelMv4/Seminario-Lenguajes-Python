@@ -56,21 +56,21 @@ st.write('Difícil: no se brindan ayudas.')
 tab1, tab2, tab3 = st.columns(3)
 
 with tab1:
-    st.header('Información del Integrante 1')
+    st.header('Información del Integrante')
     st.subheader('Nombre Completo')
-    st.write('Felipe Di Plácido')
+    st.write('Integrante 1')
     st.subheader('Legajo')
-    st.write('21256/2')
+    st.write('XXXXX/X')
 
 with tab2:
-    st.header('Información del Integrante 2')
+    st.header('Información del Integrante')
     st.subheader('Nombre Completo')
-    st.write('Franco Darío Ramírez')
+    st.write('Integrante 2')
     st.subheader('Legajo')
-    st.write('22063/9')
+    st.write('XXXXX/X')
 
 with tab3:
-    st.header('Información del Integrante 3')
+    st.header('Información del Integrante')
     st.subheader('Nombre Completo')
     st.write('Nahuel Saroglia Gambino')
     st.subheader('Legajo')
