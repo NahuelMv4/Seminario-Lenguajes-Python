@@ -6,6 +6,15 @@ def comparar (partida):
     return partida['puntaje']
 
 def guardar(partida_actual):
+    """
+    Esta función guarda una partida en un archivo JSON, ordenándola por fecha y hora.
+
+    Args:
+        partida_actual (dict): Un diccionario que representa la partida actual.
+
+    Returns:
+        int: La posición de la partida actual en la lista ordenada de partidas.
+    """
     path_partidas = Path('./users/partidas.json')
     if path_partidas.exists():
         with open(path_partidas, 'r', encoding='UTF-8') as file:
