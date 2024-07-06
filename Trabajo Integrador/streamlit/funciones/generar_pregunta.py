@@ -117,16 +117,16 @@ def obtener_pregunta (tematica):
     """
     match tematica:
         case 'Aeropuertos':
-            csv_file = Path('../customdata/ar-airports-custom.csv')
+            csv_file = Path('../custom_data/ar-airports-custom.csv')
             columnas = ['type', 'name', 'municipality', 'elevation_ft', 'elevation_name']
         case 'Lagos':
-            csv_file = Path('../customdata/lagos_arg.csv')
+            csv_file = Path('../custom_data/lagos_arg.csv')
             columnas = ['Nombre', 'Ubicación', 'Superficie (km2)', 'Profundidad máxima (m)', 'Sup Tamaño']
         case 'Conectividad':
-            csv_file = Path('../customdata/Conectividad_internet_modificado.csv')
+            csv_file = Path('../custom_data/Conectividad_internet_modificado.csv')
             columnas = ['Provincia', 'Partido', 'Localidad', 'Poblacion','posee_conectividad']
         case 'Censo 2022':
-            csv_file = Path('../customdata/c2022_tp_c_resumen_adaptado_custom.csv')
+            csv_file = Path('../custom_data/c2022_tp_c_resumen_adaptado_custom.csv')
             columnas = ['Jurisdicción', 'Total de población', 'Población en viviendas particulares', 'Población en situación de calle(²)', 'Porcentaje de población en situación de calle']
     
     dict_atributos, pregunta, respuesta = generar_pregunta(csv_file, columnas)
@@ -139,13 +139,13 @@ def ayuda_facil (tematica, pregunta, respuesta):
     """
     match tematica:    
         case 'Aeropuertos':
-            csv_file = Path('../customdata/ar-airports-custom.csv')
+            csv_file = Path('../custom_data/ar-airports-custom.csv')
         case 'Lagos':
-            csv_file = Path('../customdata/lagos_arg.csv')
+            csv_file = Path('../custom_data/lagos_arg.csv')
         case 'Conectividad':
-            csv_file = Path('../customdata/Conectividad_internet_modificado.csv')
+            csv_file = Path('../custom_data/Conectividad_internet_modificado.csv')
         case 'Censo 2022':
-            csv_file = Path('../customdata/c2022_tp_c_resumen_adaptado_custom.csv')
+            csv_file = Path('../custom_data/c2022_tp_c_resumen_adaptado_custom.csv')
 
     ops = obtener_ayuda_facil(csv_file, pregunta, respuesta)
     ops2 = obtener_ayuda_facil(csv_file, pregunta, respuesta)
